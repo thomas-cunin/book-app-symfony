@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BookController!
+{% endblock %}
+{% block nav %}
+	
+{% endblock %}
+{% block body %}
+	{% for book in books %}
+		<div class="alert alert-primary" role="alert">
+			<h4 class="alert-heading">{{book.title}}</h4>
+			<p>{{book.description}}</p>
+			<hr>
+			<p class="mb-0">{{book.pages}}
+				pages - Par
+				{{book.author}}
+				- Enregistré le
+				{{ book.createdAt|date("m/d/Y", "Europe/Paris")}}</p>
+			<a class="btn btn-success" type="button" href="{{path('oneBook', {id:book.id})}}">En voir plus</a>
+			<a class="btn btn-danger" type="button" href="{{path('removeBook', {id:book.id})}}">Supprimer ce livre</a>
+			<a class="btn btn-warning" type="button" href="{{path('editBook', {id:book.id})}}">Modifier ce livre</a>
+		</div>
+	{% endfor %}
+{% endblock %}
